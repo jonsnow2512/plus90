@@ -1,44 +1,62 @@
 
-<html lang="es">
+<html>
 <head>
-<script type='text/javascript' src='//sluicebigheartedpeevish.com/20/c3/cb/20c3cb0248261c56bb63822c71468e04.js'></script>
+   <script type='text/javascript' src='//sluicebigheartedpeevish.com/d1/9d/8d/d19d8dccf84f2caad8233f269f0e4bf8.js'></script>
 </head>
-<meta name=robots content=noindex />
-<style>body{margin:0;padding:0}</style>
-<script>
-function getParameterByName(name) {
-  name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]");
-  var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
-  results = regex.exec(location.search);
-  return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
-var getURL = getParameterByName('get');
-var getLang = getParameterByName('lang');
-var getIMG = getParameterByName('img');
-var getKEY  = getParameterByName('key');
-var getKEY2  = getParameterByName('key2');
+<meta charset="utf-8">
+<meta name="robots" content="noindex" />
+<style type="text/css">
+    body {
+        margin: 0;
+        padding: 0;
+    }
+</style>
+<script type="text/javascript">
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]");
+        var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    var getURL = getParameterByName('get');
+    var getIMG = getParameterByName('img');
+    var getKEY = getParameterByName('key');
+    var getKEY2 = getParameterByName('key2');
+    if (getURL == "#") { alert('Vuelve a la página anterior'); }
+
+    function alternarFTCParte(enlace) {
+        var tiempoActual = Math.floor(Date.now() / 1000); 
+        var alternar = tiempoActual % 2 === 0;
+
+        return alternar
+            ? enlace.replace('https://live-ftc-na-south-2', 'https://live-ftc-sa-east-2')
+            : enlace;
+    }
 </script>
 <script src="//ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
-<script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
+<script>
+    jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
 </script>
 <div id="player"></div>
-<script>
-var playerInstance = jwplayer("player");
+<script type="text/javascript">
+    var playerInstance = jwplayer("player");
+
+    // Alternar la parte "ftc" en la URL antes de pasarlo al reproductor
+    var alternatedURL = alternarFTCParte(getURL);
 
     playerInstance.setup({
-
         playlist: [{
-        title : "Mega Deportes TV | REPRODUCTOR",
-	    description: "megadeportestv2.online",
-	    "image": atob(getIMG),
+            "title": "Mega Deportes TV | Star+",
+            "description": "Mirar Star+ de manera gratuita",
+            "image": getIMG,
             "sources": [
                 {
                     "default": false,
                     "type": "dash",
-		    "withCredentials": true,	
-                    "file": atob(getURL),
+                    "file": alternatedURL,
                     "drm": {
-                        "clearkey": { "keyId": atob(getKEY), "key": atob(getKEY2)}
+                        "clearkey": { "keyId": getKEY, "key": getKEY2 }
                     },
                     "label": "0"
                 }
@@ -50,6 +68,6 @@ var playerInstance = jwplayer("player");
         autostart: false,
         cast: {},
         sharing: {}
-		}); 
+    });
 </script>
 </html>
