@@ -35,6 +35,7 @@ var playerInstance = jwplayer("player");
                 {
                     "default": false,
                     "type": "dash",
+		    "withCredentials": true,	
                     "file": atob(getURL),
                     "drm": {
                         "clearkey": { "keyId": atob(getKEY), "key": atob(getKEY2)}
